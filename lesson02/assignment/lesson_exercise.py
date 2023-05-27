@@ -7,9 +7,9 @@ ex_sub_buffer = '       '
 
 
 def ex_1():
+    print(f'{ex_buffer} ex_1 ==>')
     num_1 = int(input(f"{ex_sub_buffer}Please enter 1st number (X):"));
     num_2 = int(input(f"{ex_sub_buffer}Please enter 2nd number:(Y) "));
-    print(f'{ex_buffer} ex_1 ==>')
     decision = 'EqUaL'
     if num_1 > num_2:
         decision = "BIG"
@@ -25,8 +25,8 @@ def ex_2():
 
 
 def ex_3():
-    seasons = ['', 'summer', 'winter', 'fall', 'spring']
     print(f'{ex_buffer} ex_3 ==>')
+    seasons = ['', 'summer', 'winter', 'fall', 'spring']
     for i in range(1, 5):
         print(f'{ex_sub_buffer}{"i" * i} = {seasons[i]}')
 
@@ -142,7 +142,7 @@ def ex_11():
 
 
 def ex_12():
-    print(f'{ex_buffer} Challenge 11 ==>')
+    print(f'{ex_buffer} Challenge 12 ==>')
 
     def get_num():
         return int(input(f"{ex_sub_buffer}Please enter number for calculation:"))
