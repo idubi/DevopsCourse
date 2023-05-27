@@ -14,7 +14,7 @@ def print_is_boom (number,divider)  :
         print(number)
 
 def number_boom (fromNumber,toNumber,divider) :
-    for num in  range  (fromNumber,toNumber,1):
+    for num in  range (fromNumber,toNumber,1):
         print_is_boom(num,divider)
 
 number_names= ["zero", "one", "two","three","four","five"]
@@ -25,7 +25,10 @@ def print_number_name (num):
         print(f'number not supported , ({num})')
 
 def print_num_in_word (num):
-   print(f'{num2words(num,False,"rus")}')
-# number_boom(0,80,7)
-#print_number_name(9)
-print_num_in_word(456)
+   print(f'{num2words(num,False,"en")}')
+
+
+number_boom(0,89,7)
+#print_number_name(3)
+#print_num_in_word(456)
+
