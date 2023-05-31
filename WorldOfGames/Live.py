@@ -1,4 +1,4 @@
-from WorldOfGames.resources.ApplicationGlobals import *
+from resources.ApplicationGlobals import available_games, user_input
 
 
 def get_game_selections(games_dictionary):
@@ -10,30 +10,34 @@ def get_game_selections(games_dictionary):
 
 
 def validate_game_difficulty():
-    try:
-        selection = int(input("please select a game difficulty (0 .. 5) \n"))
-    except:
-        print('selected value must be number')
-        return False
-    if selection < 1 or selection > 5:
-        print('difficulty out of range')
-        return False
-    else:
-        return selection
+    selection = False
+    while not selection:
+        try:
+            selection = int(input("please select a game difficulty (1 .. 5) \n"))
+            if selection < 1 or selection > 5:
+                print('difficulty out of range , must be (1..5)')
+                selection = False
+                # return False
+            else:
+                return selection
+        except:
+            print('selected value must be number')
 
 
 def validate_game_selection():
-    try:
-        selection = int(input("please select a game from list \n"))
-    except:
-        print('selected value must be number')
-        return False
-    if available_games.get(selection):
-        print(f'selected game : {available_games.get(selection)} \n\n')
-        return selection
-    else:
-        print('selected value not valid')
-        return False
+    selection = False
+    while not selection:
+        try:
+            print(get_game_selections(available_games))
+            selection = int(input("please select a game from list \n"))
+            if available_games.get(selection):
+                print(f'selected game : {available_games.get(selection)} \n\n')
+                return selection
+            else:
+                print('selected value not valid')
+                selection = False
+        except:
+            print('selected value must be number')
 
 
 def get_welcome_message(name):
@@ -51,11 +55,7 @@ def welcome(name):
         print(f' \n  \n user selection summery: \n {user_input} ')
 
 
-
 def load_game():
-    print(get_game_selections(available_games))
-    while not user_input['selected_game']:
-        user_input['selected_game'] = validate_game_selection()
-    while not user_input['game_difficulty']:
-        user_input['game_difficulty'] = validate_game_difficulty()
+    user_input['selected_game'] = validate_game_selection()
+    user_input['game_difficulty'] = validate_game_difficulty()
     return True
