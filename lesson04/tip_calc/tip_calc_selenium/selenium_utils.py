@@ -3,8 +3,9 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import time
 
-WEB_DRIVER_PATH = '~/Downloads/chromedriver'
-
+# WEB_DRIVER_PATH = '~/Downloads/chromedriver'
+WEB_DRIVER_PATH = 'D:\\projects\\DevopsCourse\\venv\\chromium\\chromedriver.exe'
+ 
 
 def get_selenium_driver():
     return webdriver.Chrome(service=Service(executable_path=WEB_DRIVER_PATH))
