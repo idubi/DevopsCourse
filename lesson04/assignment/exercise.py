@@ -158,7 +158,7 @@ def ex_06():
 
 def ex_07():
     show_exercise_boundery('ex_07','login to facebook')
-    password= input("please type your facebook passwor:" )
+    password= input("please type your facebook password:" )
     driver = get_selenium_driver("CHROME")
     
     if driver:
