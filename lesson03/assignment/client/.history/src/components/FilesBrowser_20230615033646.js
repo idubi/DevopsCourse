@@ -62,6 +62,6 @@ const RightLowerDiv = styled.div`
 `;
 const Label = styled.input`
   background-color: lightgrey;
-  width: 60px;
+  width: 10px;
 `;
 export default FileBrowser;

@@ -5,8 +5,8 @@ import styled from "styled-components";
 
 function App() {
   return (
-    <Container className="App">
-      <header className="App-header">
+    <Container>
+      <header>
         <FileBrowser></FileBrowser>
       </header>
     </Container>
