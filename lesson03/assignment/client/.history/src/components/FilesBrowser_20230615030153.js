@@ -19,13 +19,13 @@ function FileBrowser() {
     <Container>
       <Upper>
         <h1>Folder selection</h1>
-        <Label type="text" value="./public/" disabled />
+        <input type="text" value="./public/" disabled />
         <input type="text" value={path} onChange={handlePathChange} />
         <button onClick={handleExecute}>Execute</button>
       </Upper>
       <Lower>
-        <LeftLowerDiv>files list</LeftLowerDiv>
-        <RightLowerDiv>selected file content</RightLowerDiv>
+        <LowerDiv>files list</LowerDiv>
+        <LowerDiv>selected file content</LowerDiv>
       </Lower>
     </Container>
   );
@@ -40,28 +40,20 @@ const Container = styled.div`
 
 const Upper = styled.div`
   height: 30%;
+  display: flex;
+  flex-direction: column;
   background-color: lightgrey;
 `;
 
 const Lower = styled.div`
   display: flex;
-  flex-direction: row;
-  height: 100%;
-  color: #abc3a7;
+  align-items: strech;
 `;
 
-const LeftLowerDiv = styled.div`
-  width: 30%;
+const LowerDiv = styled.div`
+  width: 50%;
   height: 100%;
   background-color: gray;
 `;
-const RightLowerDiv = styled.div`
-  width: 70%;
-  height: 100%;
-  background-color: gray;
-`;
-const Label = styled.input`
-  background-color: lightgrey;
-  width: 60px;
-`;
+
 export default FileBrowser;

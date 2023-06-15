@@ -19,7 +19,7 @@ function FileBrowser() {
     <Container>
       <Upper>
         <h1>Folder selection</h1>
-        <Label type="text" value="./public/" disabled />
+        <Label type="text" value="./public/" />
         <input type="text" value={path} onChange={handlePathChange} />
         <button onClick={handleExecute}>Execute</button>
       </Upper>
@@ -61,7 +61,6 @@ const RightLowerDiv = styled.div`
   background-color: gray;
 `;
 const Label = styled.input`
-  background-color: lightgrey;
-  width: 60px;
+  size: 12pc;
 `;
 export default FileBrowser;

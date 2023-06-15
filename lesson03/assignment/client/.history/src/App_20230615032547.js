@@ -6,9 +6,7 @@ import styled from "styled-components";
 function App() {
   return (
     <Container className="App">
-      <header className="App-header">
-        <FileBrowser></FileBrowser>
-      </header>
+      <FileBrowser></FileBrowser>
     </Container>
   );
 }
