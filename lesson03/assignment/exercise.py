@@ -1,7 +1,7 @@
 import datetime
 import json
 import requests
-from lesson03.assignment.matches_boy import draw_matches_boy
+from matches_boy import draw_matches_boy
 
 exercise_file_name = 'server/public/words.txt'
 
@@ -81,7 +81,7 @@ def get_file_content(file):
 
 def ex_06():
     file = create_or_open_file(exercise_file_name)
-    update_text_file(file, f'  עידן ביסטרי {str(datetime.datetime.now())} ')
+    update_text_file(file, f'  עידו ביסטרי {str(datetime.datetime.now())} ')
     close_file(file)
 
 
@@ -95,7 +95,7 @@ def ex_07():
 
 
 def ex_09_a():
-    endpoint1_url = 'http://127.0.0.1:30000'
+    endpoint1_url = 'http://127.0.0.1:30000/api/v1/file/'
     endpoint1_params = {'dir': './server/public/'}
 
     response1 = requests.get(endpoint1_url, params=endpoint1_params)
@@ -103,7 +103,7 @@ def ex_09_a():
 
 
 def ex_09_b():
-    endpoint_url = 'http://127.0.0.1:30000/content'
+    endpoint_url = 'http://127.0.0.1:30000/api/v1/file/content'
     endpoint_params = {'file': './server/public/words.txt'}
 
     response = requests.get(endpoint_url, params=endpoint_params)
@@ -111,7 +111,7 @@ def ex_09_b():
 
 
 def ex_09_c():
-    endpoint_url = 'http://127.0.0.1:30000/register'
+    endpoint_url = 'http://127.0.0.1:30000/api/v1/file/register'
     endpoint_data = {"file": "./server/public/word.txt", "data": "hello"}
     headers = {
         'Content-Type': 'application/json'
@@ -121,5 +121,5 @@ def ex_09_c():
 
 
 def ex_10():
-    draw_matches_boy("purple")
+    draw_matches_boy("green")
     return "matches boy was created in this folder , check file : ./stick_figure_man.png"

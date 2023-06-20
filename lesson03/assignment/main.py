@@ -1,8 +1,5 @@
 from exercise import *
-
-from flask import Flask
-from lesson03.assignment.server.blueprints.main_routes import main
-from lesson03.assignment.server.blueprints.file_routes import file
+from server import app
 
 print_ex_boundary("ex01")
 print(ex_01())
@@ -21,13 +18,6 @@ print(ex_07())
 print_ex_boundary("ex10")
 print(ex_10())
 
+app.execute_flask()
 
-app = Flask(__name__)
 
-# Register the blueprint with the app
-
-app.register_blueprint(file, url_prefix='/file')
-app.register_blueprint(main, url_prefix='/')
-
-if __name__ == '__main__':
-    app.run(port=30000)
