@@ -30,3 +30,25 @@ def write_content(file_path, data):
         return True
     else:
         return file
+
+
+def get_line(file_path, line_number):
+    file = create_or_open_file(file_path, mode='r')
+    res = ''
+    if not isinstance(file, str):
+        file_size = len(file)
+        if file_size < line_number:
+            print('file size is less then requested line')
+            res = ''
+        else:
+            res = file[line_number - 1]
+    close_file(file)
+    return res
+
+
+def is_file_empty(file_path):
+    file = create_or_open_file(file_path, mode='r')
+    if not isinstance(file, str):
+        file_size = len(file)
+        return file_size > 0
+    return True

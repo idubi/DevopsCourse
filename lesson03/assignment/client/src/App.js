@@ -7,7 +7,7 @@ function App() {
   return (
     <Container className="App">
       <header className="App-header">
-        <FileBrowser></FileBrowser>
+         <FileBrowser></FileBrowser>
       </header>
     </Container>
   );
