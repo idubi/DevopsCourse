@@ -1,6 +1,0 @@
-{
-    "python.analysis.extraPaths": [
-        "./lesson04/tip_calc/selenium",
-        "./lesson04/assignment/utils"
-    ]
-}
