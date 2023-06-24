@@ -8,7 +8,7 @@ def execute_flask(port=30000, api_rout='/api/v1/'):
     CORS(app, supports_credentials=True)
 
     # Register the blueprint with the app
-    app.register_blueprint(main_routes.main, url_prefix=api_rout)
+    app.register_blueprint(main_routes.main, url_prefix='/')
     app.register_blueprint(file_routes.file, url_prefix=f'{api_rout}file')
 
     if __name__ == 'server.app':
