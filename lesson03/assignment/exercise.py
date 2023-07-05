@@ -7,7 +7,7 @@ exercise_file_name = 'server/public/words.txt'
 
 
 def print_ex_boundary(ex):
-    print(f'-----------------------\n {ex}  ==> \n .... ')
+    print(f"-----------------------\n {ex}  ==> \n .... ")
 
 
 def ex_01():
@@ -46,7 +46,7 @@ def create_or_open_file(file_name, mode='a', encoding='utf-8'):
         return file
     except Exception as e:
         print("failed to open / crete file to write", str(e))
-        return str(e)
+        return None
 
 
 def update_text_file(file, data):
@@ -81,8 +81,11 @@ def get_file_content(file):
 
 def ex_06():
     file = create_or_open_file(exercise_file_name)
-    update_text_file(file, f'  עידו ביסטרי {str(datetime.datetime.now())} ')
-    close_file(file)
+    if file :
+        update_text_file(file, f'  עידו ביסטרי  {str(datetime.datetime.now())} ')
+        close_file(file)
+    else:
+        print('failed to open file !!! ')
 
 
 def ex_07():

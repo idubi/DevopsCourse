@@ -1,0 +1,63 @@
+properties([parameters(
+                        [ 
+                           string(defaultValue: 'class05-ex01.txt', description: 'name of file to create ', name: 'FILE_NAME'),
+                           string(defaultValue: 'name=ido', description: 'the data in the created file ', name: 'FILE_CONTENT')
+                        ]
+                      ) 
+           ]
+)
+
+pipeline {
+    agent any    
+    stages {
+        stage('set desktop path') {
+            steps { 
+                echo 'determine os type'
+                script{
+                    if (isUnix()) {
+                        echo "Agent host is running a Unix-like operating system"
+                        desktopPath = "/Users/${USER}/Desktop/"       
+                    } else {
+                        echo "Agent host is running a Windows-based operating system"
+                        desktopPath="%windir%"+"\\"
+                    } 
+                    env.DESKTOP_PATH = desktopPath + env.FILE_NAME
+                    echo "setting desktop path : $env.DESKTOP_PATH"
+                }
+            }
+        }
+        stage('check file existance and remove'){        
+            steps {
+                    script {
+                        def file = env.DESKTOP_PATH  
+
+                        if (fileExists(file)) {
+                            echo "File " + file + " exist and will be remved!"
+                            if (isUnix()) {
+                                sh "rm -f ${file}"
+                            } else  {
+
+                                bat "del /f ${file}"
+                            }
+                        }
+                        echo "File " + file + " not exist"
+                    }
+                }            
+        }
+        
+        stage('create file on desktop'){        
+            steps {
+                echo 'writing file'
+                script{
+                if (isUnix()) {
+                       sh "echo '${env.FILE_CONTENT}'>${env.DESKTOP_PATH}"
+                       sh "chmod 777 ${env.DESKTOP_PATH}"
+                    } else {
+                       bat "echo '${env.FILE_CONTENT}'>${env.DESKTOP_PATH}"
+                    }
+                }
+            }
+
+        } 
+     }
+}

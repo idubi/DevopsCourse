@@ -1,5 +1,6 @@
 from exercise import *
-from server import app
+
+
 
 print_ex_boundary("ex01")
 print(ex_01())
@@ -18,6 +19,7 @@ print(ex_07())
 print_ex_boundary("ex10")
 print(ex_10())
 
-app.execute_flask()
+from server import app
+app.execute_flask(port='1111')
 
 

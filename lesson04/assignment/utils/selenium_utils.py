@@ -10,19 +10,23 @@ from utils.config import get_logger
 import time 
 
 # WEB_DRIVER_PATH = '~/Downloads/chromedriver'
-WEB_DRIVER_PATH_CHROME = 'D:\\projects\\DevopsCourse\\venv\\chromium\\chromedriver.exe'
-FIREFOX_PATH = 'C:\\Program Files\\Mozilla Firefox\\firefox.exe'
-
-
+# WEB_DRIVER_PATH_CHROME = 'D:\\projects\\DevopsCourse\\venv\\chromium\\chromedriver.exe'
+# FIREFOX_PATH = 'C:\\Program Files\\Mozilla Firefox\\firefox.exe'
+FIREFOX_PATH ='/Applications/Firefox.app/Contents/MacOS/firefox-bin'
+WEB_DRIVER_PATH_CHROME = '/Users/idubim/chromedriver_mac_arm64/chromedriver'
  
 def get_selenium_driver(browser_type,flag_disable_extensions = False):
     try:
         if browser_type == "CHROME":
             options= CHROME_OPTIONS()
+            options.add_argument("--incognito")
+            options.add_argument("--lang=en-us")
+            options.add_argument("--disable-web-security")
+            options.add_argument("--allow-running-insecure-content")
             if flag_disable_extensions :
                 options.add_argument("--disable-extensions")
                 options.add_argument("--start-maximized")
-            return webdriver.Chrome(service=Service(executable_path=WEB_DRIVER_PATH_CHROME),options=options)
+            return webdriver.Chrome(service=Service(executable_path=WEB_DRIVER_PATH_CHROME), options=options)
         elif browser_type == "FIREFOX":
             options = FIREFOX_OPTIONS()
             options.binary_location = FIREFOX_PATH

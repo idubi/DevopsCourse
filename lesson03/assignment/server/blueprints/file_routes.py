@@ -1,7 +1,6 @@
 from flask import Blueprint, request, jsonify
 
-
-from lesson03.assignment.server.services.file_service import *
+from services.file_service import *
 
 # Create a Blueprint instance
 file = Blueprint('file', __name__)
@@ -15,7 +14,6 @@ def is_error_response(message):
 
 
 @file.route('/')
-
 def file_list():
     path = request.args.get('dir') or file_path
     files = list_files(path)

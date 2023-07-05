@@ -10,7 +10,7 @@ import json
 WEB_SITES = {
     "WALLA":{"URL":"https://walla.co.il"},
     "YNET":{"URL":"https://ynet.co.il"},
-    "GOOGLE_TRANSLAE_HEB_2_ENG":{"URL":"https://translate.google.com",
+    "GOOGLE_TRANSLATE_HEB_2_ENG":{"URL":"https://translate.google.com",
                        "HEB":'//*[@id="yDmH0d"]/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[2]/div[3]/c-wiz[1]/span/span/div/textarea',
                        "HEB_CLEAN":'//*[@id="ow73"]/div[1]/span/button/div[3]',
                        "ENG":'/html/body/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[2]/div[3]/c-wiz[2]/div/div[9]/div/div[1]/span[1]/span/span',                       
@@ -45,9 +45,9 @@ def web_sites_to_json():
     return json.loads(json_str)    
 
 def did_fail_for_translation_error(chrome_driver):
-     translateion_error= get_element_value(chrome_driver,web_sites_to_json().
-                                         get('GOOGLE_TRANSLAE_HEB_2_ENG').get('TRANSLATION_ERROR_BUTTON'))    
-     if translateion_error:
+     translation_error= get_element_value(chrome_driver,web_sites_to_json().
+                                         get('GOOGLE_TRANSLATE_HEB_2_ENG').get('TRANSLATION_ERROR_BUTTON'))    
+     if translation_error:
          get_logger().critical(f'\n -------------------------------------------------- \n |  ' \
                                '  FAILED OVER GOOGLE TRANSLATION ERROR !!!!   | \n ' \
                                ' -------------------------------------------------- \n')
@@ -55,7 +55,7 @@ def did_fail_for_translation_error(chrome_driver):
      else:
          return False
     
-def show_exercise_boundery(exercise_name,exercise_summery) :
+def show_exercise_boundary(exercise_name,exercise_summery) :
     get_logger().info( f'-------------------------------------- \n ================ {exercise_name} ================= ' )
     if exercise_summery :
         get_logger().debug(f'\n \n ==> {exercise_summery}') 
@@ -64,7 +64,7 @@ def show_exercise_boundery(exercise_name,exercise_summery) :
     
  
 def ex_01_02():
-    show_exercise_boundery('ex_01_02',f'open chrome and firefox with walla/ynet \n show webDriver parameters, and compare them. \n refresh them ')
+    show_exercise_boundary('ex_01_02',f'open chrome and firefox with walla/ynet \n show webDriver parameters, and compare them. \n refresh them ')
     chrome_driver = get_selenium_driver("CHROME")
     firefox_driver = get_selenium_driver("FIREFOX")
     if not (chrome_driver and firefox_driver):
@@ -104,29 +104,29 @@ def ex_01_02():
 
     
 def ex_03():
-    show_exercise_boundery('ex_03','does the element has the same locator in the other browse ?')
+    show_exercise_boundary('ex_03','does the element has the same locator in the other browse ?')
     get_logger().info("Yes  , it's the same")
     
 def ex_04():
-    show_exercise_boundery('ex_04','test google translate automation')
+    show_exercise_boundary('ex_04','test google translate automation')
     driver = get_selenium_driver("FIREFOX")
     if driver :
-        load_path(driver,web_sites_to_json().get('GOOGLE_TRANSLAE_HEB_2_ENG').get('URL'))
+        load_path(driver,web_sites_to_json().get('GOOGLE_TRANSLATE_HEB_2_ENG').get('URL'))
         phrase = "בוקר"
-        heb_path =web_sites_to_json().get('GOOGLE_TRANSLAE_HEB_2_ENG').get('HEB')
-        eng_path= web_sites_to_json().get('GOOGLE_TRANSLAE_HEB_2_ENG').get('ENG')        
+        heb_path =web_sites_to_json().get('GOOGLE_TRANSLATE_HEB_2_ENG').get('HEB')
+        eng_path= web_sites_to_json().get('GOOGLE_TRANSLATE_HEB_2_ENG').get('ENG')        
         
         set_element_value(driver,heb_path,phrase)
         
-        translateion = get_element_value(driver,eng_path,5)
-        get_logger().info(f'the meaning of {str_rtl(phrase)} is {translateion}')    
-        if not translateion :
+        translation = get_element_value(driver,eng_path,5)
+        get_logger().info(f'the meaning of {str_rtl(phrase)} is {translation}')    
+        if not translation :
           did_fail_for_translation_error(driver)
         input('ex_04 ==> please type any key to continue')      
         driver.quit()
 
 def ex_05():
-    show_exercise_boundery('ex_05','test youtube automation')
+    show_exercise_boundary('ex_05','test youtube automation')
     driver = get_selenium_driver("FIREFOX")
     if driver:
         load_path(driver,web_sites_to_json().get('YOUTUBE').get('URL'))
@@ -137,7 +137,7 @@ def ex_05():
         driver.quit()
     
 def ex_06():
-    show_exercise_boundery('ex_06','locate element in google translate using 3 different methods')
+    show_exercise_boundary('ex_06','locate element in google translate using 3 different methods')
     driver = get_selenium_driver("CHROME")
     if driver :
         load_path(driver,web_sites_to_json().get('GOOGLE_TRANSLATE_CLEAN').get('URL'))
@@ -157,7 +157,7 @@ def ex_06():
         driver.quit()   
 
 def ex_07():
-    show_exercise_boundery('ex_07','login to facebook')
+    show_exercise_boundary('ex_07','login to facebook')
     password= input("please type your facebook password:" )
     driver = get_selenium_driver("CHROME")
     
@@ -180,7 +180,7 @@ def ex_07():
     
 
 def ex_08():
-    show_exercise_boundery('  ex_08 (Challenges) ','show cookies , delete them , and check it is really deleted')
+    show_exercise_boundary('  ex_08 (Challenges) ','show cookies , delete them , and check it is really deleted')
     facebook_url = web_sites_to_json().get('FACEBOOK').get('URL')
     selected_site= input(f"please type site name for cookies probing (default: {facebook_url}) :" ) or facebook_url
     driver = get_selenium_driver("CHROME")
@@ -199,7 +199,7 @@ def ex_08():
     
             
 def ex_09():
-    show_exercise_boundery('ex_09 (Challenges)','open github and search ... ')
+    show_exercise_boundary('ex_09 (Challenges)','open github and search ... ')
     github_url = web_sites_to_json().get('GITHUB').get('URL')
     search_box_path =  web_sites_to_json().get('GITHUB').get('SEARCH_TEXT')
     text_to_saerch = 'seleniuum'
@@ -213,7 +213,7 @@ def ex_09():
             
             
 def ex_10():
-    show_exercise_boundery('ex_10 (Challenges)','load browsers without extensions')
+    show_exercise_boundary('ex_10 (Challenges)','load browsers without extensions')
     chrome_driver = get_selenium_driver("CHROME",True)
     firefox_driver = get_selenium_driver("FIREFOX",True)
     
@@ -225,7 +225,7 @@ def ex_10():
     firefox_driver and firefox_driver.quit()        
         
 def ex_11():
-    show_exercise_boundery('ex_11 (Challenges)','Find a way to start a browser without extensions')
+    show_exercise_boundary('ex_11 (Challenges)','Find a way to start a browser without extensions')
     get_logger().info("for a broser wihout extensions : \n "\
                     "for chrome : execute  'chrome --disable-extensions'   \n " \
                     "for firefox : create a profile without any extensins , name it no-extensions , and execute : 'firefox -P no-extensions' ")        

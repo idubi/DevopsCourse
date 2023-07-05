@@ -8,7 +8,7 @@ Pillow*
 .edea
 venv
 .vscode
-.idea
 __pycache__
 /.history/
 .history
+*Venv*

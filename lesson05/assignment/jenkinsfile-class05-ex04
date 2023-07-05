@@ -1,0 +1,57 @@
+properties([parameters(
+                        [ 
+                           string(defaultValue: 'class05-ex01.txt', description: 'name of file to move ', name: 'EXECUTION_FILE_NAME'),
+                           string(defaultValue: 'oldJenkinsExecutions', description: 'the folder to move file to', name: 'BACKUP_FOLDER_NAME'),
+                           string(defaultValue: '/Users/${USER}/Desktop/', description: 'the folder to move file to', name: 'DESKTOP_PATH'),
+                           string(defaultValue: 'ddmmyyyyhhmiss', description: 'saved file format', name: 'BACKUP_FORMAT')
+                        ]
+                      ) 
+           ]
+)
+
+pipeline {
+    agent any    
+    stages {
+        stage('prepare backup folder') {
+            steps { 
+                script {
+                        def backupPath = sh(script: "echo ${env.DESKTOP_PATH}${BACKUP_FOLDER_NAME}/", returnStdout:true).trim()
+                        echo "backupPath ==> " + backupPath
+                        env.BACKUP_PATH=backupPath
+                        folderExists = fileExists(backupPath)
+                        if (folderExists) {
+                            echo "The backup folder exists."
+                        } else {
+                            sh "mkdir ${backupPath}"
+                            echo "Created folder: ${backupPath}"          
+                        }
+                    }
+                }
+        }
+     
+
+        stage('check that execution file exists and move it to backup') {
+            steps { 
+                script {
+                        def filePath = sh(script: "echo ${env.DESKTOP_PATH}${EXECUTION_FILE_NAME}", returnStdout:true).trim()
+                        echo "filePath ==> " + filePath
+                        
+                        def formattedFileName =  sh(script: 'echo `date +"%d%m%Y%H%M%S"`', returnStdout:true).trim()
+                        //echo "formattedFileName ==> " + formattedFileName 
+       
+                        def backupPath = sh(script: "echo ${env.DESKTOP_PATH}${BACKUP_FOLDER_NAME}/${EXECUTION_FILE_NAME}.${formattedFileName}", returnStdout:true).trim()
+                        echo "backupPath ==> " + backupPath
+                         
+                         
+                        if (fileExists(filePath)) {
+                                    echo "moving file to backup "
+                                    sh "mv ${filePath} ${backupPath} "                                    
+                                } else {
+                                    echo "File " + file + " does not exist , nothin to backup !"
+                                }                          
+                    }
+                }
+        }
+    }
+}
+

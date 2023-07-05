@@ -1,0 +1,28 @@
+properties([parameters(
+                        [ 
+                           string(defaultValue: '/Users/idubim/Desktop/class05-ex01.txt', description: 'name of file to be read ', name: 'FILE_NAME'),                          
+                        ]
+                      ) 
+           ]
+)
+
+pipeline {
+    agent any    
+    stages {
+        stage('check file existance'){        
+            steps {
+                    script {
+                                def file = env.FILE_NAME  
+                                if (fileExists(file)) {
+                                    echo "File : " + file + " \n file content : "
+                                    def data = readFile(file: file)
+                                    echo data
+                                } else {
+                                    echo "File " + file + " does not exist !"
+                                }                            
+                            }
+                    }
+                }            
+        }
+
+    } 
