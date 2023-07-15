@@ -1,0 +1,10 @@
+pipeline { agent any
+stages { stage('test') {
+    steps { dir('/Users/idubim/PycharmProjects/pythonProject/DevopsCourse') 
+                {
+                    sh './venv/bin/python ./lesson04/assignment/main.py'
+                } 
+            }
+        } 
+    }
+}
