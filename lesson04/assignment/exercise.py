@@ -138,7 +138,7 @@ def ex_05():
         song_name = "devops with nana"
         set_element_value(driver, web_sites_to_json().get('YOUTUBE').get('SEARCH_TEXT'), song_name, 5)
         click_element(driver, web_sites_to_json().get('YOUTUBE').get('SEARCH_BUTTON'))
-        input('ex_05 ==> please type any key to continue')
+        # input('ex_05 ==> please type any key to continue')
         driver.quit()
 
 
@@ -159,13 +159,14 @@ def ex_06():
         get_logger().info(f'using xpath => {by_xpath_path} \n {element_xpth}')
         get_logger().info(f'using full xpath => {by_full_xpath_path} \n {element_fulll_xpth}')
         get_logger().info(f'using selector => {by_class_name_path} \n {element_class_name}')
-        input('ex_06 ==>please type any key to continue')
+        # input('ex_06 ==>please type any key to continue')
         driver.quit()
 
 
 def ex_07():
     show_exercise_boundary('ex_07', 'login to facebook')
-    password = input("please type your facebook password:")
+    # password = input("please type your facebook password:")
+    password = "HAnt1989!!"
     driver = get_selenium_driver("CHROME")
 
     if driver:
@@ -180,14 +181,15 @@ def ex_07():
         set_element_value(driver, user_input_path, user_email, 5)
         set_element_value(driver, password_input_path, password, 0)
         click_element(driver, login_button_path)
-        input('ex_07 ==>please type any key to continue')
+        # input('ex_07 ==>please type any key to continue')
         driver.quit()
 
 
 def ex_08():
     show_exercise_boundary('  ex_08 (Challenges) ', 'show cookies , delete them , and check it is really deleted')
     facebook_url = web_sites_to_json().get('FACEBOOK').get('URL')
-    selected_site = input(f"please type site name for cookies probing (default: {facebook_url}) :") or facebook_url
+    # selected_site = input(f"please type site name for cookies probing (default: {facebook_url}) :") or facebook_url
+    selected_site = facebook_url
     driver = get_selenium_driver("CHROME")
     load_path(driver, selected_site)
     cookies = get_cookies(driver)
@@ -213,7 +215,7 @@ def ex_09():
         load_path(driver, github_url)
         set_element_value(driver, search_box_path, text_to_saerch)
         set_element_value(driver, search_box_path, Keys.ENTER)
-        input('ex_09 ==>please type any key to continue')
+        # input('ex_09 ==>please type any key to continue')
         driver.quit()
 
 
@@ -225,7 +227,7 @@ def ex_10():
     if chrome_driver and firefox_driver:
         load_path(chrome_driver, 'http://www.oracle-developer.net/')
         load_path(firefox_driver, 'http://www.oracle-developer.net/')
-        input()
+        # input()
     chrome_driver and chrome_driver.quit()
     firefox_driver and firefox_driver.quit()
 
